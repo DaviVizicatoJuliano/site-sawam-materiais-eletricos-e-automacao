@@ -14,7 +14,7 @@ export default function WhatsAppButton() {
     >
       <div className="w-16 h-16 rounded-full shadow-lg overflow-hidden">
         <Image
-          src="/icons/whatsapp-icon.png"
+          src="/icons/whatsapp-icon-transparent.png"
           alt="WhatsApp"
           width={64}
           height={64}
