@@ -11,11 +11,11 @@ export default function Footer() {
             <p className="mb-4">Materiais Elétricos e Automação Industrial</p>
             <div className="flex items-center space-x-2 mb-2">
               <MapPin size={18} className="text-red-600" />
-              <span>Rua Exemplo, 123 - Cidade</span>
+              <span>Rua Carmine Feola, 1099 - Americana/SP</span>
             </div>
             <div className="flex items-center space-x-2 mb-2">
               <Phone size={18} className="text-red-600" />
-              <span>(00) 0000-0000</span>
+              <span>(34) 3406-2711 </span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail size={18} className="text-red-600" />
