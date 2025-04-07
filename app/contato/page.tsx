@@ -58,8 +58,8 @@ export default function ContactPage() {
                 <MapPin className="text-red-600 mr-4 mt-1" />
                 <div>
                   <h3 className="font-bold">Endereço</h3>
-                  <p>Rua Exemplo, 123 - Bairro</p>
-                  <p>Cidade - Estado, CEP 00000-000</p>
+                  <p>Carmine Feola, 1099 - Catharina Zanaga</p>
+                  <p>Americana - SP</p>
                 </div>
               </div>
 
@@ -67,8 +67,7 @@ export default function ContactPage() {
                 <Phone className="text-red-600 mr-4 mt-1" />
                 <div>
                   <h3 className="font-bold">Telefone</h3>
-                  <p>(00) 0000-0000</p>
-                  <p>(00) 90000-0000</p>
+                  <p>(19) 3406-2711</p>
                 </div>
               </div>
 
@@ -77,7 +76,6 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-bold">Email</h3>
                   <p>contato@sawam.com.br</p>
-                  <p>vendas@sawam.com.br</p>
                 </div>
               </div>
             </div>
