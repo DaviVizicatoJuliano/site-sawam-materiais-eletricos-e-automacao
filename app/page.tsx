@@ -130,7 +130,7 @@ export default function Home() {
               <div key={product.id} className="bg-white rounded-lg overflow-hidden shadow-md">
                 <div className="h-48 bg-gray-200 relative">
                   <Image
-                    src={`/placeholder.svg?height=200&width=300&text=${encodeURIComponent(product.name)}`}
+                    src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover"
@@ -139,7 +139,7 @@ export default function Home() {
                 <div className="p-4">
                   <h3 className="font-bold mb-2">{product.name}</h3>
                   <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-                  <Link href={`/produtos?categoria=${encodeURIComponent(product.name)}`}>
+                  <Link href={product.name}>
                     <Button
                       variant="outline"
                       className="w-full border-red-600 text-red-600 hover:bg-red-600 hover:text-white"
