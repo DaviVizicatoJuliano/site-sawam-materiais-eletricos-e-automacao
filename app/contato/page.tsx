@@ -63,8 +63,21 @@ export default function ContactPage() {
       </div>
 
       {/* Google Map */}
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-6">Nossa Localização</h2>
+     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2 className="text-2xl font-bold mb-6 col-span-2">Nossa Localização</h2>
+        
+        {/* Antigo Mapa */}
+        <iframe
+          src="https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=-22.5435099,-47.4374850&zoom=14&maptype=satellite"
+          width="100%"
+          height="450"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+    
+        {/* Novo Mapa */}
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d99157.1855552122!2d-47.43748500714959!3d-22.543509904179466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c89a2e18c9b78f%3A0x64128060bbd5a5e4!2sSawam!5e0!3m2!1spt-PT!2sbr!4v1744069218913!5m2!1spt-PT!2sbr"
           width="100%"
