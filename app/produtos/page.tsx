@@ -12,7 +12,7 @@ const products = [
   {
     id: 1,
     name: 'Botão de Emergência',
-    image: 'assets/botao_emergencia.jpg',
+    image: 'assets/botao_emergencia.png',
     category: 'Botões',
     description: 'Botão de emergência para desligamento rápido.',
   },
@@ -404,7 +404,7 @@ const products = [
   {
     id: 57,
     name: 'Totalizador de Impulso Eletromecânico CSK6',
-    image: 'assets/totalizador_csk6.jpg',
+    image: 'assets/totalizador_CSK6.jpg',
     category: 'Indicadores',
     description: 'Totalizador de impulso eletromecânico CSK6.',
   },
