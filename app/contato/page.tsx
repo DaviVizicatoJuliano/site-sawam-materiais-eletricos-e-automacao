@@ -67,15 +67,14 @@ export default function ContactPage() {
         <h2 className="text-2xl font-bold mb-6 col-span-2">Nossa Localização</h2>
         
         {/* Antigo Mapa */}
-        <iframe
-          src="https://www.google.com/maps/embed/v1/view?key=YOUR_API_KEY&center=-22.5435099,-47.4374850&zoom=14&maptype=satellite"
-          width="100%"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.8639165976797!2d-47.35256708928871!3d-22.733298879291628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c89bbe166e412f%3A0x11cffd91428cee9d!2sSawam%20Materiais%20El%C3%A9tricos%20e%20Automa%C3%A7%C3%A3o%20industrial%20LTDA-ME!5e0!3m2!1spt-PT!2sbr!4v1744071046503!5m2!1spt-PT!2sbr" 
+          width="100%" 
+          height="450" 
+           style={{ border: 0 }} 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
     
         {/* Novo Mapa */}
         <iframe
