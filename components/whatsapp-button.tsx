@@ -12,13 +12,13 @@ export default function WhatsAppButton() {
       className="fixed bottom-6 right-6 z-50 transition-transform hover:scale-110"
       aria-label="Contato via WhatsApp"
     >
-      <div className="w-16 h-16 rounded-full shadow-lg overflow-hidden flex items-center">
+      <div className="w-16 h-16 rounded-full overflow-hidden flex items-center justify-center">
         <Image
           src="/icons/icon_whatsapp_transparent.png"
           alt="WhatsApp"
           width={64}
           height={64}
-          className="w-12 h-12 object-contain"
+          className="w-full h-full object-contain"
         />
       </div>
     </Link>
