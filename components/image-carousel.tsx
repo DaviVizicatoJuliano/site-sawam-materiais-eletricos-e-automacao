@@ -9,7 +9,7 @@ export function ImageCarousel() {
           <CarouselItem>
             <div className="p-1 h-[400px] relative">
               <Image
-                src="/placeholder.svg?height=800&width=1200"
+                src="/assets/ft1_carr.png"
                 alt="Imagem 1"
                 fill
                 className="rounded-lg object-cover"
@@ -23,7 +23,7 @@ export function ImageCarousel() {
           <CarouselItem>
             <div className="p-1 h-[400px] relative">
               <Image
-                src="/placeholder.svg?height=800&width=1200"
+                src="/assets/ft2_carr.png"
                 alt="Imagem 2"
                 fill
                 className="rounded-lg object-cover"
@@ -36,7 +36,7 @@ export function ImageCarousel() {
           <CarouselItem>
             <div className="p-1 h-[400px] relative">
               <Image
-                src="/placeholder.svg?height=800&width=1200"
+                src="/assets/ft3_carr.png"
                 alt="Imagem 3"
                 fill
                 className="rounded-lg object-cover"
