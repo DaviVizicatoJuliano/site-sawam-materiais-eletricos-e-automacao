@@ -32,7 +32,7 @@ export default function Navbar() {
             <Link href="/contato" className="text-white hover:text-red-500 transition-colors">
               Contato
             </Link>
-            <a href = "https://wa.me/19978114605"> 
+            <a href="https://wa.me/19978114605"> 
               <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white">
                 Orçamento
               </Button>
@@ -70,7 +70,7 @@ export default function Navbar() {
               >
                 Contato
               </Link>
-              <a href = "https://wa.me/19978114605">
+              <a href="https://wa.me/19978114605">
                 <Button
                   variant="outline"
                   className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white w-full"
