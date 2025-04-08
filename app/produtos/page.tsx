@@ -1,16 +1,12 @@
 "use client"
 
-import React from "react"
-
 import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import ProductCard from "@/components/product-card"
-import { Search, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 
-// Dados de exemplo para produtos
-const products = [
-  {
+export default function ProdutosPage() {
+  // Dados de exemplo para produtos com os atributos corretos
+  const allProducts = [
+    {
     id: 1,
     name: 'Botão de Emergência',
     image: 'assets/botao_emergencia.png',
@@ -465,161 +461,143 @@ const products = [
     category: 'Disjuntores',
     description: 'Disjuntor aberto HW2.',
   },
-]
+  ]
 
-// Extrair categorias únicas dos produtos
-const uniqueCategories = ["Todos os Produtos", ...Array.from(new Set(products.map((product) => product.category)))]
+  // Extrair categorias únicas dos produtos
+  const uniqueCategories = ["Todos", ...new Set(allProducts.map((product) => product.category))]
 
-export default function ProductsPage() {
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("Todos os Produtos")
+  // Estados para filtro, paginação e produtos exibidos
+  const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [currentPage, setCurrentPage] = useState(1)
-  const productsPerPage = 10
+  const [filteredProducts, setFilteredProducts] = useState(allProducts)
+  const [displayedProducts, setDisplayedProducts] = useState([])
 
-  // Filtrar produtos com base na categoria e termo de pesquisa
-  const filteredProducts = products.filter((product) => {
-    const matchesCategory = selectedCategory === "Todos os Produtos" || product.category === selectedCategory
-    const matchesSearch =
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
+  const productsPerPage = 8
 
-  // Calcular produtos para a página atual
-  const indexOfLastProduct = currentPage * productsPerPage
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-  const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct)
+  // Filtrar produtos por categoria e atualizar paginação
+  useEffect(() => {
+    const filtered =
+      selectedCategory === "Todos"
+        ? allProducts
+        : allProducts.filter((product) => product.category === selectedCategory)
+
+    setFilteredProducts(filtered)
+    setCurrentPage(1) // Reset para a primeira página ao mudar o filtro
+  }, [selectedCategory])
+
+  // Atualizar produtos exibidos com base na página atual
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * productsPerPage
+    const endIndex = startIndex + productsPerPage
+    setDisplayedProducts(filteredProducts.slice(startIndex, endIndex))
+  }, [currentPage, filteredProducts])
 
   // Calcular número total de páginas
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage)
 
-  // Mudar de página
-  const paginate = (pageNumber) => {
-    if (pageNumber > 0 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber)
-      // Rolar para o topo da lista de produtos
-      window.scrollTo({ top: 0, behavior: "smooth" })
-    }
+  // Gerar array de números de página para paginação
+  const pageNumbers = []
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i)
   }
 
-  // Resetar para a primeira página quando a categoria ou pesquisa mudar
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [selectedCategory, searchTerm])
+  // Função para mudar de página
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return
+    setCurrentPage(pageNumber)
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Nossos Produtos</h1>
 
-      {/* Search and Filter */}
-      <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="relative flex-1">
-            <input
-              type="text"
-              placeholder="Buscar produtos..."
-              className="w-full p-3 pl-10 border border-gray-300 rounded-md"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Search className="absolute left-3 top-3 text-gray-400" size={20} />
-          </div>
+      {/* Filtro de categorias responsivo */}
+      <div className="mb-8 overflow-x-auto">
+        <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:space-x-4 pb-2">
+          {uniqueCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-full whitespace-nowrap transition-colors ${
+                selectedCategory === category ? "bg-gray-800 text-white" : "bg-gray-100 hover:bg-gray-200"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
         </div>
-
-        {/* Categories */}
-        <div className="mt-4">
-          <h2 className="text-lg font-semibold mb-2">Categorias</h2>
-          <div className="flex flex-wrap gap-2">
-            {uniqueCategories.map((category, index) => (
-              <Button
-                key={index}
-                variant={category === selectedCategory ? "default" : "outline"}
-                className={category === selectedCategory ? "bg-red-600 hover:bg-red-700" : ""}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Results count */}
-      <div className="mb-4 text-gray-600">
-        Mostrando {currentProducts.length} de {filteredProducts.length} produtos
-        {selectedCategory !== "Todos os Produtos" && ` na categoria "${selectedCategory}"`}
-        {searchTerm && ` contendo "${searchTerm}"`}
       </div>
 
       {/* Lista de produtos */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((products) => (
-          <div key={products.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <div className="relative h-48">
-              <Image src={products.image || "/placeholder.svg"} alt={products.name} fill className="object-cover" />
+      {displayedProducts.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {displayedProducts.map((product) => (
+            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+              <div className="relative h-48">
+                <Image src={product.image || "/placeholder.svg"} alt={product.name} fill className="object-cover" />
+              </div>
+              <div className="p-4">
+                <span className="text-sm text-gray-500">{product.category}</span>
+                <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+              </div>
             </div>
-            <div className="p-4">
-              <span className="text-sm text-gray-500">{products.category}</span>
-              <h3 className="font-semibold text-lg mb-2">{products.name}</h3>
-              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{products.description}</p>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-8">
+          <p className="text-gray-500">Nenhum produto encontrado nesta categoria.</p>
+        </div>
+      )}
 
-              {/* Removidos os botões de orçamento e ver detalhes */}
-              {/* Removida a exibição de preço */}
-            </div>
-          </div>
-        ))}
-      </div>
-
-
-      {/* Pagination */}
-      {filteredProducts.length > productsPerPage && (
+      {/* Paginação responsiva */}
+      {totalPages > 1 && (
         <div className="mt-8 flex justify-center">
-          <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
+          <nav className="flex flex-wrap items-center justify-center gap-2">
+            <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-3"
+              className={`px-3 py-1 rounded border ${
+                currentPage === 1 ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-100"
+              }`}
             >
-              <ChevronLeft size={16} />
-            </Button>
+              Anterior
+            </button>
 
-            <div className="flex gap-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter((page) => {
-                  // Mostrar primeira página, última página e páginas próximas à atual
-                  return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1)
-                })
-                .map((page, index, array) => (
-                  <React.Fragment key={page}>
-                    {index > 0 && array[index - 1] !== page - 1 && (
-                      <Button variant="ghost" disabled className="px-3">
-                        ...
-                      </Button>
-                    )}
-                    <Button
-                      variant={currentPage === page ? "default" : "outline"}
-                      className={currentPage === page ? "bg-red-600 hover:bg-red-700" : ""}
-                      onClick={() => paginate(page)}
-                    >
-                      {page}
-                    </Button>
-                  </React.Fragment>
-                ))}
+            {/* Versão para telas pequenas - apenas página atual */}
+            <div className="sm:hidden flex items-center">
+              <span className="px-3 py-1">
+                Página {currentPage} de {totalPages}
+              </span>
             </div>
 
-            <Button
-              variant="outline"
+            {/* Versão para telas maiores - números de página */}
+            <div className="hidden sm:flex items-center space-x-1">
+              {pageNumbers.map((number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`px-3 py-1 rounded ${
+                    currentPage === number ? "bg-gray-800 text-white" : "border hover:bg-gray-100"
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+            </div>
+
+            <button
               onClick={() => paginate(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-3"
+              className={`px-3 py-1 rounded border ${
+                currentPage === totalPages ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-100"
+              }`}
             >
-              <ChevronRight size={16} />
-            </Button>
-          </div>
+              Próxima
+            </button>
+          </nav>
         </div>
       )}
     </div>
   )
 }
-
