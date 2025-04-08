@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import ProductCard from "@/components/product-card"
 import { Search, ChevronLeft, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
 // Dados de exemplo para produtos
 const products = [
@@ -550,24 +551,24 @@ export default function ProductsPage() {
         {searchTerm && ` contendo "${searchTerm}"`}
       </div>
 
-      {/* Products Grid */}
-    {currentProducts.length > 0 ? (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {currentProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            description={product.description}
-            image={product.image}
-          />
+      {/* Lista de produtos */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {produtos.map((produto) => (
+          <div key={produto.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="relative h-48">
+              <Image src={produto.imagem || "/placeholder.svg"} alt={produto.nome} fill className="object-cover" />
+            </div>
+            <div className="p-4">
+              <span className="text-sm text-gray-500">{produto.categoria}</span>
+              <h3 className="font-semibold text-lg mb-2">{produto.nome}</h3>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{produto.descricao}</p>
+
+              {/* Removidos os botões de orçamento e ver detalhes */}
+              {/* Removida a exibição de preço */}
+            </div>
+          </div>
         ))}
       </div>
-    ) : (
-      <div className="text-center py-12">
-        <p className="text-xl text-gray-500">Nenhum produto encontrado</p>
-      </div>
-    )}
 
 
       {/* Pagination */}
