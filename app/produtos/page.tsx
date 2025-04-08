@@ -553,15 +553,15 @@ export default function ProductsPage() {
 
       {/* Lista de produtos */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {produtos.map((produto) => (
-          <div key={produto.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+        {products.map((products) => (
+          <div key={products.id} className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="relative h-48">
-              <Image src={produto.imagem || "/placeholder.svg"} alt={produto.nome} fill className="object-cover" />
+              <Image src={products.imagem || "/placeholder.svg"} alt={products.nome} fill className="object-cover" />
             </div>
             <div className="p-4">
-              <span className="text-sm text-gray-500">{produto.categoria}</span>
-              <h3 className="font-semibold text-lg mb-2">{produto.nome}</h3>
-              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{produto.descricao}</p>
+              <span className="text-sm text-gray-500">{products.categoria}</span>
+              <h3 className="font-semibold text-lg mb-2">{products.nome}</h3>
+              <p className="text-gray-600 text-sm mb-4 line-clamp-2">{products.descricao}</p>
 
               {/* Removidos os botões de orçamento e ver detalhes */}
               {/* Removida a exibição de preço */}
