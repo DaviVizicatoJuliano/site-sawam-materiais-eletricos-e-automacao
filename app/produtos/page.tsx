@@ -550,24 +550,46 @@ export default function ProductsPage() {
         {searchTerm && ` contendo "${searchTerm}"`}
       </div>
 
+      const ProductGrid = ({ currentProducts }) => {
+  return (
+    <div>
       {/* Products Grid */}
-      {currentProducts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {currentProducts.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              description={product.description}
-              image={product.image}
-            />
-          ))}
+          {currentProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {currentProducts.map((product) => (
+                <div key={product.id} className="border rounded-lg p-4 shadow-md">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={200}
+                    height={200}
+                    className="w-full h-32 object-cover"
+                  />
+                  <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
+                  <p className="text-gray-600">{product.description}</p>
+                  <div className="mt-4">
+                    <a
+                      href="https://wa.me/19978114605"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                        Orçamento
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-gray-500">Nenhum produto encontrado</p>
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-xl text-gray-500">Nenhum produto encontrado</p>
-        </div>
-      )}
+      );
+    };
+
 
       {/* Pagination */}
       {filteredProducts.length > productsPerPage && (
