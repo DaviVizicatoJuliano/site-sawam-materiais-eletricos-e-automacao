@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle, Zap, Shield, PenToolIcon as Tool } from "lucide-react"
+import { ImageCarousel } from "@/components/image-carousel"
 
 // Produtos em destaque selecionados do catálogo
 const featuredProducts = [
@@ -71,6 +72,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ImageCarousel />
 
       {/* Features Section */}
       <section className="py-16">
