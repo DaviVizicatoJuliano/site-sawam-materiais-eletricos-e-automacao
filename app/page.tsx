@@ -143,7 +143,7 @@ export default function Home() {
                   <h3 className="font-bold mb-2">{product.name}</h3>
                   <p className="text-gray-600 text-sm mb-3">{product.description}</p>
                   <Link href="/produtos">
-                    <Button variant="outline" className="border-white text-black hover:bg-white hover:text-red">
+                    <Button variant="outline" className="bg-red-600 hover:bg-red-700 text-white">
                       Ver produtos
                     </Button>
                   </Link>
