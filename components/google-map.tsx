@@ -20,7 +20,7 @@ export default function GoogleMap() {
   return (
     <div className="h-96 w-full rounded-lg overflow-hidden">
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.863916040416!2d-47.349986799999996!3d-22.733298899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c89bbe166e412f%3A0x11cffd91428cee9d!2sSawam%20Materiais%20El%C3%A9tricos%20e%20Automa%C3%A7%C3%A3o%20industrial%20LTDA-ME!5e0!3m2!1spt-PT!2sbr!4v1744056762694!5m2!1spt-PT!2sbr"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3709.991206233765!2d-47.901596685064!3d-21.58550198569848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b92550b73a3c3b%3A0x43a13b5e4f4b1b3a!2sRua%20Carmine%20Feola%2C%201099%20-%20Jardim%20California%2C%20Americana%20-%20SP%2C%2013470-010!5e0!3m2!1spt-BR!2sbr!4v1622059318182!5m2!1spt-BR!2sbr"
         width="100%"
         height="100%"
         style={{ border: 0 }}
@@ -32,4 +32,3 @@ export default function GoogleMap() {
     </div>
   )
 }
-
