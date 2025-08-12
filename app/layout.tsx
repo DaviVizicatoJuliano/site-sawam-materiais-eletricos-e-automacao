@@ -11,7 +11,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Sawam Materiais Elétricos e Automação Industrial",
   description: "Sua loja de materiais elétricos e automação industrial",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
