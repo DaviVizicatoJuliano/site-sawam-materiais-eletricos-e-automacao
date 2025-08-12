@@ -394,7 +394,7 @@ export default function ProdutosPage() {
   {
     id: 56,
     name: 'Indicador de Impulso BMTI3J',
-    image: 'assets/totalizador_bmti3j.jpg',
+    image: 'assets/totalizador_BMTI3J.jpg',
     category: 'Indicadores',
     description: 'Indicador de impulso BMTI3J.',
   },
